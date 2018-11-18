@@ -15,7 +15,6 @@ public class SocketWindowWordCount {
 	public static void main(String[] args) throws Exception {
 		// set up the streaming execution environment
 		final StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
-		HashMap<String, Integer> acc = new HashMap<>();
 
 		// 创建一个socket流数据源，host=localhost && port=12345
 		DataStream<String>  text = env.socketTextStream("localhost", 12345, "\n");

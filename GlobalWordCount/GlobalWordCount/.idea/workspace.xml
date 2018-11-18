@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a74dce64-7979-4c2c-8b77-4e675f2210da" name="Default Changelist" comment="">
+    <list default="true" id="e0f33642-2118-4b70-89b5-75ad62d722a3" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/../../HotItems/HotItems/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../HotItems/HotItems/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../HotItems/HotItems/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../HotItems/HotItems/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../MyWordCount/wordCount/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../MyWordCount/wordCount/.idea/workspace.xml" afterDir="false" />
     </list>
-    <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -14,53 +14,50 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FUSProjectUsageTrigger">
-    <session id="684357251">
+    <session id="2043109553">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="5" />
-          <entry key="project.open.time.10" value="1" />
-          <entry key="project.open.time.12" value="1" />
-          <entry key="project.open.time.2" value="1" />
-          <entry key="project.open.time.3" value="1" />
-          <entry key="project.open.time.33" value="1" />
-          <entry key="project.opened" value="5" />
+          <entry key="project.closed" value="1" />
+          <entry key="project.open.time.1" value="1" />
+          <entry key="project.opened" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="java" value="4" />
-          <entry key="xml" value="2" />
+          <entry key="java" value="1" />
+          <entry key="xml" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="JAVA" value="4" />
-          <entry key="XML" value="2" />
+          <entry key="JAVA" value="1" />
+          <entry key="XML" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="java" value="3465" />
-          <entry key="xml" value="14" />
+          <entry key="java" value="2331" />
+          <entry key="xml" value="6" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="3465" />
-          <entry key="XML" value="14" />
+          <entry key="JAVA" value="2331" />
+          <entry key="XML" value="6" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+    <leaf>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/myflink/SocketWindowWordCount.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/myflink/GlobalWordCount.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="441">
-              <caret line="45" column="1" selection-start-line="45" selection-start-column="1" selection-end-line="45" selection-end-column="1" />
+            <state relative-caret-position="-676">
+              <caret line="25" column="37" selection-start-line="25" selection-start-column="37" selection-end-line="25" selection-end-column="37" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#2013#2038#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -68,16 +65,9 @@
       </file>
     </leaf>
   </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="Class" />
-      </list>
-    </option>
-  </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>mainClass</find>
+      <find>main</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -88,61 +78,49 @@
       <list>
         <option value="$PROJECT_DIR$/src/main/java/myflink/StreamingJob.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/myflink/GloalCount.java" />
-        <option value="$PROJECT_DIR$/src/main/java/myflink/SocketWindowWordCount.java" />
-      </list>
-    </option>
-  </component>
-  <component name="MavenImportPreferences">
-    <option name="enabledProfiles">
-      <list>
-        <option value="add-dependencies-for-IDEA" />
+        <option value="$PROJECT_DIR$/src/main/java/myflink/GlobalWordCount.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-192" />
-    <option name="y" value="73" />
-    <option name="width" value="1346" />
-    <option name="height" value="700" />
+    <option name="x" value="219" />
+    <option name="width" value="1028" />
+    <option name="height" value="705" />
   </component>
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
-    <ConfirmationsSetting value="2" id="Add" />
-  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
-              <item name="wordCount" type="b2602c69:ProjectViewProjectNode" />
-              <item name="wordCount" type="462c0819:PsiDirectoryNode" />
+              <item name="GlobalWordCount" type="b2602c69:ProjectViewProjectNode" />
+              <item name="GlobalWordCount" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="wordCount" type="b2602c69:ProjectViewProjectNode" />
-              <item name="wordCount" type="462c0819:PsiDirectoryNode" />
+              <item name="GlobalWordCount" type="b2602c69:ProjectViewProjectNode" />
+              <item name="GlobalWordCount" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="wordCount" type="b2602c69:ProjectViewProjectNode" />
-              <item name="wordCount" type="462c0819:PsiDirectoryNode" />
+              <item name="GlobalWordCount" type="b2602c69:ProjectViewProjectNode" />
+              <item name="GlobalWordCount" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="wordCount" type="b2602c69:ProjectViewProjectNode" />
-              <item name="wordCount" type="462c0819:PsiDirectoryNode" />
+              <item name="GlobalWordCount" type="b2602c69:ProjectViewProjectNode" />
+              <item name="GlobalWordCount" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="wordCount" type="b2602c69:ProjectViewProjectNode" />
-              <item name="wordCount" type="462c0819:PsiDirectoryNode" />
+              <item name="GlobalWordCount" type="b2602c69:ProjectViewProjectNode" />
+              <item name="GlobalWordCount" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
@@ -153,16 +131,11 @@
         </subPane>
       </pane>
       <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../HotItems/HotItems" />
     <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
-  </component>
-  <component name="RecentsManager">
-    <key name="CreateClassDialog.RecentsKey">
-      <recent name="myflink" />
-    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -176,65 +149,45 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.SocketWindowWordCount">
-    <configuration name="SocketWindowWordCount" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="myflink.SocketWindowWordCount" />
-      <module name="wordCount" />
+  <component name="RunManager">
+    <configuration name="GlobalWordCount" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="myflink.GlobalWordCount" />
+      <module name="GlobalWordCount" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Unnamed" type="Application" factoryName="Application">
-      <option name="MAIN_CLASS_NAME" value="myflink.SocketWindowWordCount" />
-      <module name="wordCount" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <list>
-      <item itemvalue="Application.Unnamed" />
-      <item itemvalue="Application.SocketWindowWordCount" />
-    </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.SocketWindowWordCount" />
+        <item itemvalue="Application.GlobalWordCount" />
       </list>
     </recent_temporary>
   </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
-  <component name="TodoView">
-    <todo-panel id="selected-file">
-      <is-autoscroll-to-source value="true" />
-    </todo-panel>
-    <todo-panel id="all">
-      <are-packages-shown value="true" />
-      <is-autoscroll-to-source value="true" />
-    </todo-panel>
-  </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25189108" />
+      <window_info id="Designer" />
+      <window_info id="Favorites" side_tool="true" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.0" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info id="Designer" order="2" />
-      <window_info id="Favorites" order="3" side_tool="true" />
+      <window_info anchor="bottom" id="Version Control" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Event Log" side_tool="true" />
+      <window_info anchor="bottom" id="Messages" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.18904594" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.07553366" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" weight="0.3295082" />
-      <window_info anchor="bottom" id="Version Control" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" />
-      <window_info anchor="bottom" id="Messages" order="9" weight="0.32840723" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="right" id="Palette&#9;" />
+      <window_info anchor="right" id="Maven Projects" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Palette&#9;" order="3" />
-      <window_info anchor="right" id="Maven Projects" order="4" />
     </layout>
   </component>
   <component name="VcsContentAnnotationSettings">
@@ -243,26 +196,18 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="167">
-          <caret line="146" column="76" selection-start-line="146" selection-start-column="76" selection-end-line="146" selection-end-column="76" />
+        <state relative-caret-position="176">
+          <caret line="146" column="70" selection-start-line="146" selection-start-column="70" selection-end-line="146" selection-end-column="70" />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/flink/flink-core/1.6.1/flink-core-1.6.1-sources.jar!/org/apache/flink/api/common/functions/FlatMapFunction.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/myflink/GlobalWordCount.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="247">
-          <caret line="55" column="9" selection-start-line="55" selection-start-column="9" selection-end-line="55" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/myflink/MyWindowFunction.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/myflink/GloalCount.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/myflink/SocketWindowWordCount.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="441">
-          <caret line="45" column="1" selection-start-line="45" selection-start-column="1" selection-end-line="45" selection-end-column="1" />
+        <state relative-caret-position="-676">
+          <caret line="25" column="37" selection-start-line="25" selection-start-column="37" selection-end-line="25" selection-end-column="37" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#2013#2038#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -272,6 +217,7 @@
     <states>
       <state key="ProjectJDKs.UI">
         <settings>
+          <last-edited>1.8</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
