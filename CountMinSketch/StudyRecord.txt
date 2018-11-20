@@ -1,0 +1,6 @@
+¹þÏ£º¯Êýmurmurhash
+
+ // A super fast way of computing x mod 2^p-1
+        // See http://www.cs.princeton.edu/courses/archive/fall09/cos521/Handouts/universalclasses.pdf
+        // page 149, right after Proposition 7.
+
