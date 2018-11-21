@@ -9,7 +9,7 @@ import java.util.Random;
 
 // the data structure for count-min sketch
 // implements the FrequencyInterface (which contains basic operators for computing frequency)
-public class CountMinSketch implements FrequencyInterface, Serializable {
+public class CountMinSketch implements Serializable {
 
     // the big prime used in count-min hash functions
     public static final long COUNT_MIN_PRIME = (1L << 31) - 1;
@@ -106,7 +106,7 @@ public class CountMinSketch implements FrequencyInterface, Serializable {
         return ((int) hash) % width;
     }
 
-    @Override
+
     public void add(long item, long count) {
         // check whether it is an negative increment
         if(count < 0){
@@ -119,7 +119,6 @@ public class CountMinSketch implements FrequencyInterface, Serializable {
         checkSizeAfterAdd(String.valueOf(item), count);
     }
 
-    @Override
     public long estimateCount(long item) {
         // set a max number to initialize
         long res = Long.MAX_VALUE;
@@ -130,7 +129,6 @@ public class CountMinSketch implements FrequencyInterface, Serializable {
         return res;
     }
 
-    @Override
     public void add(String item, long count) {
         // check whether it is an negative increment
         if(count < 0){
@@ -143,7 +141,6 @@ public class CountMinSketch implements FrequencyInterface, Serializable {
         checkSizeAfterAdd(item, count);
     }
 
-    @Override
     public long estimateCount(String item) {
         // set a max number to initialize
         long res = Long.MAX_VALUE;
@@ -155,7 +152,6 @@ public class CountMinSketch implements FrequencyInterface, Serializable {
         return res;
     }
 
-    @Override
     public long size() {
         return size;
     }

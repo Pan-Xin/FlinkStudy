@@ -13,15 +13,17 @@ import org.apache.flink.util.Collector;
 import scala.Tuple1;
 
 import java.io.Serializable;
+import java.util.Map;
 import java.util.Random;
 
 // here is the Test class for testing Count-Min Sketch
 public class Test {
 
+    public static final String ACC_NAME = "CMHH";
+
     public static void main(String[] args) throws Exception {
         // set up the streaming execution environment
         final StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
-        env.setParallelism(6);
 
         String dataSetPath = "C:\\Users\\xin-p\\Desktop\\workspace\\FlinkStudy\\CountMinSketch\\CountMinSketch\\src\\main\\resources\\dataset1.txt";
         String outputPath = "C:\\Users\\xin-p\\Desktop\\output.txt";
@@ -29,14 +31,33 @@ public class Test {
         DataStreamSource<String> dataStreamSource = env.readTextFile(dataSetPath);
 
         // preprocess the text file
-        DataStream<CMHeavyHitter> dataStream = dataStreamSource
+        DataStream<Tuple1<String>> dataStream = dataStreamSource
                 .flatMap(new SplitToWords())
                 .flatMap(new CMHHProcess());
 
         dataStream.writeAsText(outputPath, FileSystem.WriteMode.OVERWRITE);
 
         JobExecutionResult res = env.execute();
-        res.getJobExecutionResult();
+
+       // Accumulator<> global = res.getAccumulatorResult(ACC_NAME);
+
+      //  System.out.print(global);
+
+//        CMHeavyHitter merged = null;
+//
+//        Map<String, Object> accRes = res.getAllAccumulatorResults();
+//        for(String accName : accRes.keySet()){
+//            if(accName.contains(ACC_NAME + "-")){
+//                CMHeavyHitter local = (CMHeavyHitter) accRes.get(accName);
+//                if(merged == null)
+//                    merged = local.clone();
+//                else
+//                    merged.merge(local);
+//            }
+//        }
+
+
+
 
     }
 
@@ -55,40 +76,41 @@ public class Test {
         }
     }
 
-    // the configuration for count-min sketch heavy hitter
-    public static class CMHHConfig{
-        static final double fraction = 0.01;
-        static final double error = 0.005;
-        static final double confidence = 0.99;
-        static final int seed = 7362181;
-        static final Random random = new Random();
-        static final int cardinality = 1000000;
-        static final int maxScale = 1000000;
-    }
-
-    public static class CMHHProcess extends RichFlatMapFunction<String, Tuple1<Integer>> {
+    public static class CMHHProcess extends RichFlatMapFunction<String, Tuple1<String>> {
 
         private Accumulator<Object, Serializable> globalAcc;
         private Accumulator<Object, Serializable> localAcc;
 
-        private static final String ACC_NAME = "CMHH";
 
         @Override
         public void open(Configuration parameters) throws Exception {
-            globalAcc = getRuntimeContext().getAccumulator("CMHH");
+            globalAcc = getRuntimeContext().getAccumulator(ACC_NAME);
             if(globalAcc == null){
-                getRuntimeContext().addAccumulator(ACC_NAME, new CMHeavyHitterAcc();
+                getRuntimeContext().addAccumulator(ACC_NAME, new CMHeavyHitterAcc());
                 globalAcc = getRuntimeContext().getAccumulator(ACC_NAME);
             }
             int subTaskIndex = getRuntimeContext().getIndexOfThisSubtask();
             localAcc = getRuntimeContext().getAccumulator(ACC_NAME + "-" + subTaskIndex);
+            if(localAcc == null){
+                getRuntimeContext().addAccumulator(ACC_NAME + "-" + subTaskIndex,
+                        new CMHeavyHitterAcc());
+                localAcc = getRuntimeContext().getAccumulator(ACC_NAME + "-" + subTaskIndex);
+            }
         }
 
         @Override
-        public void flatMap(String value, Collector<Tuple1<Integer>> out) throws Exception {
+        public void flatMap(String value, Collector<Tuple1<String>> out) throws Exception {
             try{
-                
+                localAcc.add(value);
+                out.collect(new Tuple1<>(value));
+            } catch (Exception e){
+                e.printStackTrace();
             }
+        }
+
+        @Override
+        public void close() throws Exception {
+            globalAcc.merge(localAcc);
         }
     }
 }

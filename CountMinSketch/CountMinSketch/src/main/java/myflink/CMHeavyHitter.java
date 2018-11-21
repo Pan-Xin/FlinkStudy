@@ -13,15 +13,18 @@ import java.util.Map;
 // solve the heavy hitter problem by using count-min sketch
 public class CMHeavyHitter implements Serializable {
 
-    private transient CountMinSketch countMinSketch;
-
-    private HashMap<Object, Long> heavyHitter;
-
+    private transient CountMinSketch countMinSketch; // the count-min sketch
+    private HashMap<Object, Long> heavyHitter; // the result of heavy hitter
     private long cardinality;
-
     private double fraction;
-
     private double error;
+
+    // here are the parameters for count-min sketch which are defined by CMHeavyHitterConfig
+    private double pFraction = CMHeavyHitterConfig.fraction;
+    private double pError = CMHeavyHitterConfig.error;
+    private double pConfidence = CMHeavyHitterConfig.confidence;
+    private int pSeed = CMHeavyHitterConfig.seed;
+
 
     // the getters
     CountMinSketch getCountMinSketch(){
@@ -60,7 +63,7 @@ public class CMHeavyHitter implements Serializable {
     public void add(Object obj) {
         cardinality += 1;
         // if the type of obj is Long
-        if(obj instanceof  Long){
+        if(obj instanceof Long){
             countMinSketch.add((Long)obj, 1);
         }
         else{
@@ -134,6 +137,7 @@ public class CMHeavyHitter implements Serializable {
         } catch (ClassCastException e1){
             throw new Exception("Both heavy hitter should have the same class");
         } catch (Exception e2){
+            e2.printStackTrace();
             throw new Exception("Fail to merge heavy hitters");
         }
 
@@ -160,10 +164,9 @@ public class CMHeavyHitter implements Serializable {
     }
 
     public CMHeavyHitter clone(){
-        CMHeavyHitter res = new CMHeavyHitter(Test.CMHHConfig.fraction, Test.CMHHConfig.error,
-                Test.CMHHConfig.confidence, Test.CMHHConfig.seed);
+        CMHeavyHitter res = new CMHeavyHitter(pFraction, pError, pConfidence, pSeed);
         try {
-            res.merge(this);
+            res.countMinSketch = countMinSketch.merge(res.countMinSketch);
         } catch (Exception e) {
             e.printStackTrace();
         }

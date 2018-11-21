@@ -2,12 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="441ce920-13c6-4c5c-bf6c-1ce9a400f0d4" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/myflink/CMHeavyHitter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/myflink/CMHeavyHitter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/myflink/CMHeavyHitterAcc.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/myflink/CMHeavyHitterAcc.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/myflink/HeavyHitter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/myflink/CountMinSketch.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/myflink/CountMinSketch.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/myflink/FrequencyInterface.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/myflink/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/myflink/Test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../GlobalWordCount/GlobalWordCount/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../GlobalWordCount/GlobalWordCount/.idea/workspace.xml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -20,35 +20,36 @@
     <session id="1929765646">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="4" />
+          <entry key="project.closed" value="5" />
           <entry key="project.open.time.1" value="1" />
           <entry key="project.open.time.16" value="1" />
+          <entry key="project.open.time.22" value="1" />
           <entry key="project.open.time.28" value="1" />
           <entry key="project.open.time.9" value="1" />
-          <entry key="project.opened" value="4" />
+          <entry key="project.opened" value="5" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="java" value="27" />
+          <entry key="java" value="34" />
           <entry key="xml" value="3" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="JAVA" value="27" />
+          <entry key="JAVA" value="34" />
           <entry key="XML" value="3" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="java" value="12327" />
+          <entry key="java" value="13762" />
           <entry key="xml" value="27" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="12327" />
+          <entry key="JAVA" value="13762" />
           <entry key="XML" value="27" />
         </counts>
       </usages-collector>
@@ -88,20 +89,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pom.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2873">
-              <caret line="169" column="18" selection-start-line="169" selection-start-column="18" selection-end-line="169" selection-end-column="18" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/myflink/Test.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="610">
-              <caret line="89" column="16" selection-start-line="89" selection-start-column="16" selection-end-line="89" selection-end-column="16" />
+            <state relative-caret-position="-93">
+              <caret line="82" lean-forward="true" selection-start-line="82" selection-end-line="82" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -110,15 +102,30 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="jar://$MAVEN_REPOSITORY$/org/apache/flink/flink-streaming-java_2.11/1.6.1/flink-streaming-java_2.11-1.6.1-sources.jar!/org/apache/flink/streaming/api/environment/StreamExecutionEnvironment.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="119">
+              <caret line="1510" selection-start-line="1510" selection-end-line="1510" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/myflink/CMHeavyHitterAcc.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="157">
-              <caret line="20" column="21" lean-forward="true" selection-start-line="20" selection-start-column="21" selection-end-line="20" selection-end-column="21" />
+            <state relative-caret-position="510">
+              <caret line="47" selection-start-line="47" selection-end-line="47" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/myflink/CountMinSketch.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="3808">
+              <caret line="236" selection-start-line="236" selection-end-line="236" />
               <folding>
-                <element signature="e#429#430#0" expanded="true" />
-                <element signature="e#461#462#0" expanded="true" />
-                <element signature="e#523#524#0" expanded="true" />
-                <element signature="e#551#552#0" expanded="true" />
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -127,44 +134,10 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/myflink/CMHeavyHitter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1777">
-              <caret line="166" column="19" lean-forward="true" selection-start-line="166" selection-start-column="19" selection-end-line="166" selection-end-column="19" />
+            <state relative-caret-position="833">
+              <caret line="144" lean-forward="true" selection-start-line="144" selection-end-line="144" />
               <folding>
                 <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/myflink/FrequencyInterface.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="51">
-              <caret line="3" column="17" selection-start-line="3" selection-start-column="17" selection-end-line="3" selection-end-column="17" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/myflink/CountMinSketch.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1206">
-              <caret line="119" selection-start-line="119" selection-end-line="119" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/myflink/Util/MurmurHash.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1190">
-              <caret line="74" selection-start-line="74" selection-end-line="74" />
-              <folding>
-                <element signature="e#825#826#0" expanded="true" />
-                <element signature="e#875#876#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -184,6 +157,8 @@
     <findStrings>
       <find>get</find>
       <find>main</find>
+      <find>TOs</find>
+      <find>me</find>
     </findStrings>
     <dirStrings>
       <dir>C:\Users\xin-p\Desktop\workspace\FlinkStudy\CountMinSketch\CountMinSketch\src\main\java\myflink\Util</dir>
@@ -198,12 +173,13 @@
         <option value="$PROJECT_DIR$/src/main/java/myflink/FrequencyInterface.java" />
         <option value="$PROJECT_DIR$/src/main/java/myflink/Util/MurmurHash.java" />
         <option value="$PROJECT_DIR$/src/main/java/myflink/Util/HashForString.java" />
-        <option value="$PROJECT_DIR$/src/main/java/myflink/CountMinSketch.java" />
         <option value="$PROJECT_DIR$/src/main/java/myflink/HeavyHitter.java" />
         <option value="$PROJECT_DIR$/src/main/java/myflink/CMHeavyHitterTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/myflink/CMtest.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/myflink/StreamingJob.java" />
+        <option value="$PROJECT_DIR$/src/main/java/myflink/CountMinSketch.java" />
+        <option value="$PROJECT_DIR$/src/main/java/myflink/CMHeavyHitterConfig.java" />
         <option value="$PROJECT_DIR$/src/main/java/myflink/CMHeavyHitterAcc.java" />
         <option value="$PROJECT_DIR$/src/main/java/myflink/CMHeavyHitter.java" />
         <option value="$PROJECT_DIR$/src/main/java/myflink/Test.java" />
@@ -217,10 +193,10 @@
       </MavenImportingSettings>
     </option>
   </component>
-  <component name="ProjectFrameBounds" fullScreen="true">
-    <option name="y" value="23" />
-    <option name="width" value="1280" />
-    <option name="height" value="705" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="-68" />
+    <option name="width" value="1366" />
+    <option name="height" value="690" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="1" id="Add" />
@@ -230,6 +206,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -267,7 +244,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
       <pane id="Scope" />
     </panes>
   </component>
@@ -277,7 +253,7 @@
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
-    <property name="settings.editor.selected.configurable" value="configurable.group.editor" />
+    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -331,10 +307,9 @@
     </history-entry>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1280" height="800" extended-state="0" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49913645" visible="true" weight="0.0" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49913645" visible="true" weight="0.16490166" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Favorites" order="3" sideWeight="0.50086355" side_tool="true" weight="0.017449664" />
@@ -343,8 +318,8 @@
       <window_info id="Capture Tool" order="6" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.34262297" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.21639344" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.2749591" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.5171849" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -364,18 +339,6 @@
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/myflink/Test.java</url>
-          <line>38</line>
-          <properties />
-          <option name="timeStamp" value="6" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/main/java/myflink/Util/HashForString.java">
@@ -402,24 +365,6 @@
     <entry file="jar://$MAVEN_REPOSITORY$/org/apache/flink/flink-streaming-java_2.11/1.6.1/flink-streaming-java_2.11-1.6.1-sources.jar!/org/apache/flink/streaming/api/functions/source/ContinuousFileReaderOperator.java" />
     <entry file="jar://$MAVEN_REPOSITORY$/org/apache/flink/flink-streaming-java_2.11/1.6.1/flink-streaming-java_2.11-1.6.1-sources.jar!/org/apache/flink/streaming/api/operators/StreamSourceContexts.java" />
     <entry file="jar://$MAVEN_REPOSITORY$/org/apache/flink/flink-streaming-java_2.11/1.6.1/flink-streaming-java_2.11-1.6.1-sources.jar!/org/apache/flink/streaming/runtime/tasks/OperatorChain.java" />
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2873">
-          <caret line="169" column="18" selection-start-line="169" selection-start-column="18" selection-end-line="169" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/myflink/Util/MurmurHash.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1190">
-          <caret line="74" selection-start-line="74" selection-end-line="74" />
-          <folding>
-            <element signature="e#825#826#0" expanded="true" />
-            <element signature="e#875#876#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/myflink/HeavyHitter.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
@@ -430,24 +375,39 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/myflink/FrequencyInterface.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
-          <caret line="3" column="17" selection-start-line="3" selection-start-column="17" selection-end-line="3" selection-end-column="17" />
+          <caret line="3" column="35" selection-start-line="3" selection-start-column="17" selection-end-line="3" selection-end-column="35" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/myflink/CountMinSketch.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/myflink/Util/MurmurHash.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1206">
-          <caret line="119" selection-start-line="119" selection-end-line="119" />
+        <state relative-caret-position="1224">
+          <caret line="74" selection-start-line="74" selection-end-line="74" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#825#826#0" expanded="true" />
+            <element signature="e#875#876#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="353">
+          <caret line="169" column="18" selection-start-line="169" selection-start-column="18" selection-end-line="169" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/myflink/CMHeavyHitterConfig.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="38" lean-forward="true" selection-start-line="7" selection-start-column="38" selection-end-line="7" selection-end-column="38" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/myflink/CMHeavyHitter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1777">
-          <caret line="166" column="19" lean-forward="true" selection-start-line="166" selection-start-column="19" selection-end-line="166" selection-end-column="19" />
+        <state relative-caret-position="833">
+          <caret line="144" lean-forward="true" selection-start-line="144" selection-end-line="144" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -456,21 +416,32 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/myflink/CMHeavyHitterAcc.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="157">
-          <caret line="20" column="21" lean-forward="true" selection-start-line="20" selection-start-column="21" selection-end-line="20" selection-end-column="21" />
+        <state relative-caret-position="510">
+          <caret line="47" selection-start-line="47" selection-end-line="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/myflink/CountMinSketch.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3808">
+          <caret line="236" selection-start-line="236" selection-end-line="236" />
           <folding>
-            <element signature="e#429#430#0" expanded="true" />
-            <element signature="e#461#462#0" expanded="true" />
-            <element signature="e#523#524#0" expanded="true" />
-            <element signature="e#551#552#0" expanded="true" />
+            <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/flink/flink-streaming-java_2.11/1.6.1/flink-streaming-java_2.11-1.6.1-sources.jar!/org/apache/flink/streaming/api/environment/StreamExecutionEnvironment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="1510" selection-start-line="1510" selection-end-line="1510" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/myflink/Test.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="610">
-          <caret line="89" column="16" selection-start-line="89" selection-start-column="16" selection-end-line="89" selection-end-column="16" />
+        <state relative-caret-position="-93">
+          <caret line="82" lean-forward="true" selection-start-line="82" selection-end-line="82" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -517,7 +488,7 @@
       </state>
       <state key="JdkListConfigurable.UI">
         <settings>
-          <last-edited>10</last-edited>
+          <last-edited>1.8</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
