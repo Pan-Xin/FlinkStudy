@@ -2,6 +2,9 @@ package myflink;
 
 import myflink.Util.MurmurHash;
 
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -119,13 +122,45 @@ public class CMHeavyHitter implements HeavyHitter, Serializable {
             HashMap<Object, Long> res = new HashMap<Object, Long>();
             // copy current heavy hitter to the result
             for(Map.Entry<Object, Long> e : this.heavyHitter.entrySet()){
+                // because this.countMinSketch has been updated
+                // the estimate count here are the sum of this and ch2
                 res.put(e.getKey(), estimateCount(e.getKey()));
             }
-            // put the second one in the result
+            // put the entry whose key are not in this into result
             for(Map.Entry<Object, Long> e : ch2.heavyHitter.entrySet()){
-
+                if(!res.containsKey(e.getKey()))
+                    res.put(e.getKey(), estimateCount(e.getKey()));
             }
+            // update the result heavy hitter
+            this.heavyHitter = res;
+            // update the result cardinality
+            this.cardinality += ch2.cardinality;
+        } catch (ClassCastException e1){
+            throw new Exception("Both heavy hitter should have the same class");
+        } catch (Exception e2){
+            throw new Exception("Fail to merge heavy hitters");
         }
 
+    }
+
+    @Override
+    public String toString() {
+        String str = "";
+        Map<Object, Long> heavyHitter = getHeavyHitter();
+        for(Map.Entry<Object, Long> e : heavyHitter.entrySet()){
+            str += e.getKey().toString() + "  frequency:" + e.getValue() + "\n";
+        }
+        return str;
+    }
+
+    private void writeObj(ObjectOutputStream out) throws IOException{
+        out.defaultWriteObject();
+        out.writeObject(CountMinSketch.serialize(countMinSketch));
+    }
+
+    private void readObj(ObjectInputStream in) throws  IOException, ClassNotFoundException{
+        in.defaultReadObject();
+        byte[] b = (byte[]) in.readObject();
+        countMinSketch = CountMinSketch.deserialize(b);
     }
 }
