@@ -11,7 +11,7 @@ import java.util.Iterator;
 import java.util.Map;
 
 // solve the heavy hitter problem by using count-min sketch
-public class CMHeavyHitter implements HeavyHitter, Serializable {
+public class CMHeavyHitter implements Serializable {
 
     private transient CountMinSketch countMinSketch;
 
@@ -57,7 +57,6 @@ public class CMHeavyHitter implements HeavyHitter, Serializable {
         this.heavyHitter = new HashMap<Object, Long>();
     }
 
-    @Override
     public void add(Object obj) {
         cardinality += 1;
         // if the type of obj is Long
@@ -101,7 +100,6 @@ public class CMHeavyHitter implements HeavyHitter, Serializable {
             return countMinSketch.estimateCount(MurmurHash.hash(item));
     }
 
-    @Override
     public HashMap getHeavyHitter() {
         long minValue = (long)Math.ceil(cardinality * fraction);
         remove(minValue);
@@ -109,10 +107,8 @@ public class CMHeavyHitter implements HeavyHitter, Serializable {
     }
 
     // the function used to merge two heavy hitter
-    @Override
-    public void merge(HeavyHitter heavyHitter) throws Exception {
+    public void merge(CMHeavyHitter ch2) throws Exception {
         try {
-            CMHeavyHitter ch2 = (CMHeavyHitter)heavyHitter;
             // check whether the fraction are the same
             if(this.fraction != ch2.fraction)
                 throw new Exception("Two heavy hitters must have the same fraction");
@@ -143,7 +139,6 @@ public class CMHeavyHitter implements HeavyHitter, Serializable {
 
     }
 
-    @Override
     public String toString() {
         String str = "";
         Map<Object, Long> heavyHitter = getHeavyHitter();
@@ -162,5 +157,16 @@ public class CMHeavyHitter implements HeavyHitter, Serializable {
         in.defaultReadObject();
         byte[] b = (byte[]) in.readObject();
         countMinSketch = CountMinSketch.deserialize(b);
+    }
+
+    public CMHeavyHitter clone(){
+        CMHeavyHitter res = new CMHeavyHitter(Test.CMHHConfig.fraction, Test.CMHHConfig.error,
+                Test.CMHHConfig.confidence, Test.CMHHConfig.seed);
+        try {
+            res.merge(this);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return res;
     }
 }

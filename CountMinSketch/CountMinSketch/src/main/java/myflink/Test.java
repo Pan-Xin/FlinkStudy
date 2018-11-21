@@ -77,14 +77,18 @@ public class Test {
         public void open(Configuration parameters) throws Exception {
             globalAcc = getRuntimeContext().getAccumulator("CMHH");
             if(globalAcc == null){
-                getRuntimeContext().addAccumulator(ACC_NAME,
-                        new CMHeavyHitter(CMHHConfig.fraction, CMHHConfig.error, CMHHConfig.confidence, CMHHConfig.seed));
+                getRuntimeContext().addAccumulator(ACC_NAME, new CMHeavyHitterAcc();
+                globalAcc = getRuntimeContext().getAccumulator(ACC_NAME);
             }
+            int subTaskIndex = getRuntimeContext().getIndexOfThisSubtask();
+            localAcc = getRuntimeContext().getAccumulator(ACC_NAME + "-" + subTaskIndex);
         }
 
         @Override
         public void flatMap(String value, Collector<Tuple1<Integer>> out) throws Exception {
-
+            try{
+                
+            }
         }
     }
 }

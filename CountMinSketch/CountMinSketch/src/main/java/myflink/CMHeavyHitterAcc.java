@@ -13,7 +13,7 @@ public class CMHeavyHitterAcc implements Accumulator<Object, CMHeavyHitter> {
 
     @Override
     public void add(Object value) {
-        local.process(value);
+        local.add(value);
     }
 
     @Override
@@ -29,7 +29,11 @@ public class CMHeavyHitterAcc implements Accumulator<Object, CMHeavyHitter> {
 
     @Override
     public void merge(Accumulator<Object, CMHeavyHitter> other) {
-        local.merge(other.getLocalValue());
+        try {
+            local.merge(other.getLocalValue());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
