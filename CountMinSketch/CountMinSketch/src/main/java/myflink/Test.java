@@ -2,6 +2,7 @@ package myflink;
 
 import org.apache.flink.api.common.accumulators.Accumulator;
 import org.apache.flink.api.common.functions.FlatMapFunction;
+import org.apache.flink.api.common.functions.ReduceFunction;
 import org.apache.flink.api.common.functions.RichFlatMapFunction;
 import org.apache.flink.api.java.tuple.Tuple2;
 import org.apache.flink.configuration.Configuration;
@@ -9,6 +10,7 @@ import org.apache.flink.core.fs.FileSystem;
 import org.apache.flink.streaming.api.datastream.DataStream;
 import org.apache.flink.streaming.api.datastream.DataStreamSource;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
+import org.apache.flink.streaming.api.windowing.time.Time;
 import org.apache.flink.util.Collector;
 
 // here is the Test class for testing Count-Min Sketch
@@ -22,17 +24,18 @@ public class Test {
 
         // set up the streaming execution environment
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
-        env.setParallelism(3);
+        env.setParallelism(1);
 
         String dataSetPath = "C:\\Users\\xin-p\\Desktop\\workspace\\FlinkStudy\\CountMinSketch\\CountMinSketch\\src\\main\\resources\\dataset1.txt";
-        String outputPath = "C:\\Users\\xin-p\\Desktop\\output.txt";
+        String outputPath = "C:\\Users\\xin-p\\Desktop\\dataset1Words.txt";
 
         DataStreamSource<String> dataStreamSource = env.readTextFile(dataSetPath);
 
         // preprocess the text file
-        DataStream<Tuple2<String, Integer>> dataStream = dataStreamSource
+        DataStream<String> dataStream = dataStreamSource
                 .flatMap(new SplitToWords())
                 .flatMap(new CMHHProcess());
+
 
         dataStream.writeAsText(outputPath, FileSystem.WriteMode.OVERWRITE);
 
@@ -60,12 +63,13 @@ public class Test {
                 str = str.replaceAll("\\p{P}"," "); // remove punctuation
                 String[] str2 = str.split(" ");
                 for(String word : str2)
-                    out.collect(word);
+                    if(!"".equals(word))
+                        out.collect(word);
             }
         }
     }
 
-    public static class CMHHProcess extends RichFlatMapFunction<String, Tuple2<String, Integer>> {
+    public static class CMHHProcess extends RichFlatMapFunction<String, String> {
         public Accumulator<Object, CMHeavyHitter> globalAccumulator;
         public Accumulator<Object, CMHeavyHitter> localAccumulator;
 
@@ -86,10 +90,10 @@ public class Test {
         }
 
         @Override
-        public void flatMap(String value, Collector<Tuple2<String, Integer>> out) throws Exception {
+        public void flatMap(String value, Collector<String> out) throws Exception {
             try{
                 localAccumulator.add(value);
-                out.collect(new Tuple2<>(value, 1));
+                out.collect(value + "," + 1);
             } catch (Exception e){
                 e.printStackTrace();
             }
