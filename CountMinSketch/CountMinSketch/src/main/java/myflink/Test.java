@@ -4,6 +4,8 @@ import org.apache.flink.api.common.JobExecutionResult;
 import org.apache.flink.api.common.accumulators.Accumulator;
 import org.apache.flink.api.common.functions.FlatMapFunction;
 import org.apache.flink.api.common.functions.RichFlatMapFunction;
+import org.apache.flink.api.common.functions.RuntimeContext;
+import org.apache.flink.api.java.tuple.Tuple2;
 import org.apache.flink.configuration.Configuration;
 import org.apache.flink.core.fs.FileSystem;
 import org.apache.flink.streaming.api.datastream.DataStream;
@@ -13,17 +15,16 @@ import org.apache.flink.util.Collector;
 import scala.Tuple1;
 
 import java.io.Serializable;
-import java.util.Map;
-import java.util.Random;
 
 // here is the Test class for testing Count-Min Sketch
 public class Test {
 
-    public static final String ACC_NAME = "CMHH";
+    public static final String ACC_NAME = "cmhh";
 
     public static void main(String[] args) throws Exception {
         // set up the streaming execution environment
-        final StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
+        StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
+        env.setParallelism(3);
 
         String dataSetPath = "C:\\Users\\xin-p\\Desktop\\workspace\\FlinkStudy\\CountMinSketch\\CountMinSketch\\src\\main\\resources\\dataset1.txt";
         String outputPath = "C:\\Users\\xin-p\\Desktop\\output.txt";
@@ -31,17 +32,18 @@ public class Test {
         DataStreamSource<String> dataStreamSource = env.readTextFile(dataSetPath);
 
         // preprocess the text file
-        DataStream<Tuple1<String>> dataStream = dataStreamSource
+        DataStream<Tuple2<String, Integer>> dataStream = dataStreamSource
                 .flatMap(new SplitToWords())
                 .flatMap(new CMHHProcess());
+
 
         dataStream.writeAsText(outputPath, FileSystem.WriteMode.OVERWRITE);
 
         JobExecutionResult res = env.execute();
 
-       // Accumulator<> global = res.getAccumulatorResult(ACC_NAME);
+       CMHeavyHitter global = res.getAccumulatorResult(ACC_NAME);
 
-      //  System.out.print(global);
+      System.out.print(global);
 
 //        CMHeavyHitter merged = null;
 //
@@ -76,11 +78,9 @@ public class Test {
         }
     }
 
-    public static class CMHHProcess extends RichFlatMapFunction<String, Tuple1<String>> {
-
-        private Accumulator<Object, Serializable> globalAcc;
-        private Accumulator<Object, Serializable> localAcc;
-
+    public static class CMHHProcess extends RichFlatMapFunction<String, Tuple2<String, Integer>> {
+        public Accumulator<Object, Serializable> globalAcc;
+        public Accumulator<Object, Serializable> localAcc;
 
         @Override
         public void open(Configuration parameters) throws Exception {
@@ -99,10 +99,10 @@ public class Test {
         }
 
         @Override
-        public void flatMap(String value, Collector<Tuple1<String>> out) throws Exception {
+        public void flatMap(String value, Collector<Tuple2<String, Integer>> out) throws Exception {
             try{
                 localAcc.add(value);
-                out.collect(new Tuple1<>(value));
+                out.collect(new Tuple2<>(value, 1));
             } catch (Exception e){
                 e.printStackTrace();
             }
