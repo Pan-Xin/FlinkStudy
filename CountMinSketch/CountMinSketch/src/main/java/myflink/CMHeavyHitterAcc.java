@@ -5,7 +5,7 @@ import org.apache.flink.api.common.accumulators.Accumulator;
 import java.io.Serializable;
 
 // used to track estimated values for count distinct and heavy hitters
-public class CMHeavyHitterAcc implements Accumulator<Object, Serializable>, Serializable {
+public class CMHeavyHitterAcc implements Accumulator<Object, CMHeavyHitter> {
 
     private CMHeavyHitter local;
 
@@ -36,7 +36,7 @@ public class CMHeavyHitterAcc implements Accumulator<Object, Serializable>, Seri
     }
 
     @Override
-    public void merge(Accumulator<Object, Serializable> other) {
+    public void merge(Accumulator<Object, CMHeavyHitter> other) {
         try {
             local.merge((CMHeavyHitter) other.getLocalValue());
         } catch (Exception e) {
@@ -45,7 +45,7 @@ public class CMHeavyHitterAcc implements Accumulator<Object, Serializable>, Seri
     }
 
     @Override
-    public Accumulator<Object, Serializable> clone() {
+    public Accumulator<Object, CMHeavyHitter> clone() {
         CMHeavyHitterAcc clone = new CMHeavyHitterAcc();
         clone.local = this.local.clone();
         return clone;

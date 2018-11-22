@@ -1,10 +1,8 @@
 package myflink;
 
-import org.apache.flink.api.common.JobExecutionResult;
 import org.apache.flink.api.common.accumulators.Accumulator;
 import org.apache.flink.api.common.functions.FlatMapFunction;
 import org.apache.flink.api.common.functions.RichFlatMapFunction;
-import org.apache.flink.api.common.functions.RuntimeContext;
 import org.apache.flink.api.java.tuple.Tuple2;
 import org.apache.flink.configuration.Configuration;
 import org.apache.flink.core.fs.FileSystem;
@@ -12,16 +10,16 @@ import org.apache.flink.streaming.api.datastream.DataStream;
 import org.apache.flink.streaming.api.datastream.DataStreamSource;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 import org.apache.flink.util.Collector;
-import scala.Tuple1;
-
-import java.io.Serializable;
 
 // here is the Test class for testing Count-Min Sketch
 public class Test {
 
     public static final String ACC_NAME = "cmhh";
+    public static CMHeavyHitter cmhhRes;
 
     public static void main(String[] args) throws Exception {
+        cmhhRes = initCMHH();
+
         // set up the streaming execution environment
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
         env.setParallelism(3);
@@ -36,32 +34,21 @@ public class Test {
                 .flatMap(new SplitToWords())
                 .flatMap(new CMHHProcess());
 
-
         dataStream.writeAsText(outputPath, FileSystem.WriteMode.OVERWRITE);
 
-        JobExecutionResult res = env.execute();
+        env.execute();
 
-       CMHeavyHitter global = res.getAccumulatorResult(ACC_NAME);
-
-      System.out.print(global);
-
-//        CMHeavyHitter merged = null;
-//
-//        Map<String, Object> accRes = res.getAllAccumulatorResults();
-//        for(String accName : accRes.keySet()){
-//            if(accName.contains(ACC_NAME + "-")){
-//                CMHeavyHitter local = (CMHeavyHitter) accRes.get(accName);
-//                if(merged == null)
-//                    merged = local.clone();
-//                else
-//                    merged.merge(local);
-//            }
-//        }
-
-
-
-
+        System.out.print(cmhhRes);
     }
+
+    private static CMHeavyHitter initCMHH() {
+        double pFraction = CMHeavyHitterConfig.fraction;
+        double pError = CMHeavyHitterConfig.error;
+        double pConfidence = CMHeavyHitterConfig.confidence;
+        int seed = CMHeavyHitterConfig.seed;
+        return new CMHeavyHitter(pFraction, pError, pConfidence, seed);
+    }
+
 
     // used to split the sentences into words
     public static class SplitToWords implements FlatMapFunction<String, String>{
@@ -79,29 +66,29 @@ public class Test {
     }
 
     public static class CMHHProcess extends RichFlatMapFunction<String, Tuple2<String, Integer>> {
-        public Accumulator<Object, Serializable> globalAcc;
-        public Accumulator<Object, Serializable> localAcc;
+        public Accumulator<Object, CMHeavyHitter> globalAccumulator;
+        public Accumulator<Object, CMHeavyHitter> localAccumulator;
 
         @Override
         public void open(Configuration parameters) throws Exception {
-            globalAcc = getRuntimeContext().getAccumulator(ACC_NAME);
-            if(globalAcc == null){
+            globalAccumulator = getRuntimeContext().getAccumulator(ACC_NAME);
+            if(globalAccumulator == null){
                 getRuntimeContext().addAccumulator(ACC_NAME, new CMHeavyHitterAcc());
-                globalAcc = getRuntimeContext().getAccumulator(ACC_NAME);
+                globalAccumulator = getRuntimeContext().getAccumulator(ACC_NAME);
             }
             int subTaskIndex = getRuntimeContext().getIndexOfThisSubtask();
-            localAcc = getRuntimeContext().getAccumulator(ACC_NAME + "-" + subTaskIndex);
-            if(localAcc == null){
+            localAccumulator = getRuntimeContext().getAccumulator(ACC_NAME + "-" + subTaskIndex);
+            if(localAccumulator == null){
                 getRuntimeContext().addAccumulator(ACC_NAME + "-" + subTaskIndex,
                         new CMHeavyHitterAcc());
-                localAcc = getRuntimeContext().getAccumulator(ACC_NAME + "-" + subTaskIndex);
+                localAccumulator = getRuntimeContext().getAccumulator(ACC_NAME + "-" + subTaskIndex);
             }
         }
 
         @Override
         public void flatMap(String value, Collector<Tuple2<String, Integer>> out) throws Exception {
             try{
-                localAcc.add(value);
+                localAccumulator.add(value);
                 out.collect(new Tuple2<>(value, 1));
             } catch (Exception e){
                 e.printStackTrace();
@@ -110,7 +97,8 @@ public class Test {
 
         @Override
         public void close() throws Exception {
-            globalAcc.merge(localAcc);
+            globalAccumulator.merge(localAccumulator);
+            cmhhRes.merge(globalAccumulator.getLocalValue());
         }
     }
 }
