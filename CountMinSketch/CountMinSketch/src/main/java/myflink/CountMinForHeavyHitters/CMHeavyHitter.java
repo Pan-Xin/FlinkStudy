@@ -1,4 +1,4 @@
-package myflink;
+package myflink.CountMinForHeavyHitters;
 
 import myflink.Util.MurmurHash;
 

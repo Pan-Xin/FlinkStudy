@@ -1,8 +1,6 @@
-package myflink;
+package myflink.CountMinForHeavyHitters;
 
 import org.apache.flink.api.common.accumulators.Accumulator;
-
-import java.io.Serializable;
 
 // used to track estimated values for count distinct and heavy hitters
 public class CMHeavyHitterAcc implements Accumulator<Object, CMHeavyHitter> {

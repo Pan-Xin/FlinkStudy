@@ -1,20 +1,17 @@
-package myflink;
+package myflink.CountMinForHeavyHitters;
 
 import org.apache.flink.api.common.accumulators.Accumulator;
 import org.apache.flink.api.common.functions.FlatMapFunction;
-import org.apache.flink.api.common.functions.ReduceFunction;
 import org.apache.flink.api.common.functions.RichFlatMapFunction;
-import org.apache.flink.api.java.tuple.Tuple2;
 import org.apache.flink.configuration.Configuration;
 import org.apache.flink.core.fs.FileSystem;
 import org.apache.flink.streaming.api.datastream.DataStream;
 import org.apache.flink.streaming.api.datastream.DataStreamSource;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
-import org.apache.flink.streaming.api.windowing.time.Time;
 import org.apache.flink.util.Collector;
 
-// here is the Test class for testing Count-Min Sketch
-public class Test {
+// here is the Test class for testing Count-Min Sketch heavy hitter
+public class CMHHTest {
 
     public static final String ACC_NAME = "cmhh";
     public static CMHeavyHitter cmhhRes;

@@ -1,4 +1,4 @@
-package myflink;
+package myflink.CountMinForHeavyHitters;
 
 import myflink.Util.HashForString;
 import org.apache.flink.util.Preconditions;

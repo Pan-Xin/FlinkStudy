@@ -1,4 +1,4 @@
-package myflink;
+package myflink.CountMinForHeavyHitters;
 
 import java.io.Serializable;
 import java.util.Random;
