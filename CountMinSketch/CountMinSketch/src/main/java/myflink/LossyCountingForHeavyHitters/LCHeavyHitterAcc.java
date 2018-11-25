@@ -10,7 +10,9 @@ public class LCHeavyHitterAcc implements Accumulator<Object, LossyCounting> {
     private double pError = LCHeavyHitterConfig.pError;
 
     // the constructor
-    
+    LCHeavyHitterAcc(){
+        local = new LossyCounting(pFraction, pError);
+    }
 
     @Override
     public void add(Object value) {
@@ -39,5 +41,11 @@ public class LCHeavyHitterAcc implements Accumulator<Object, LossyCounting> {
     @Override
     public Accumulator<Object, LossyCounting> clone() {
         LCHeavyHitterAcc res = new LCHeavyHitterAcc();
+        try {
+            res.local = local.clone();
+        } catch (CloneNotSupportedException e) {
+            e.printStackTrace();
+        }
+        return res;
     }
 }

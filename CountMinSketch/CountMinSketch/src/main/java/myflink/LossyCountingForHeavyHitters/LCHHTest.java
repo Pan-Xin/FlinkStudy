@@ -62,7 +62,7 @@ public class LCHHTest {
         }
     }
 
-    public static class CMHHProcess extends RichFlatMapFunction<String, String> {
+    public static class LCHHProcess extends RichFlatMapFunction<String, String> {
         public Accumulator<Object, LossyCounting> globalAccumulator;
         public Accumulator<Object, LossyCounting> localAccumulator;
 
@@ -70,14 +70,14 @@ public class LCHHTest {
         public void open(Configuration parameters) throws Exception {
             globalAccumulator = getRuntimeContext().getAccumulator(ACC_NAME);
             if(globalAccumulator == null){
-                getRuntimeContext().addAccumulator(ACC_NAME, new LossyCounting(pFraction, pError));
+                getRuntimeContext().addAccumulator(ACC_NAME, new LCHeavyHitterAcc());
                 globalAccumulator = getRuntimeContext().getAccumulator(ACC_NAME);
             }
             int subTaskIndex = getRuntimeContext().getIndexOfThisSubtask();
             localAccumulator = getRuntimeContext().getAccumulator(ACC_NAME + "-" + subTaskIndex);
             if(localAccumulator == null){
                 getRuntimeContext().addAccumulator(ACC_NAME + "-" + subTaskIndex,
-                        new CMHeavyHitterAcc());
+                        new LCHeavyHitterAcc());
                 localAccumulator = getRuntimeContext().getAccumulator(ACC_NAME + "-" + subTaskIndex);
             }
         }
@@ -95,7 +95,7 @@ public class LCHHTest {
         @Override
         public void close() throws Exception {
             globalAccumulator.merge(localAccumulator);
-            cmhhRes.merge(globalAccumulator.getLocalValue());
+            lchhRes.merge(globalAccumulator.getLocalValue());
         }
     }
 }

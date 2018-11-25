@@ -2,10 +2,12 @@ package myflink.LossyCountingForHeavyHitters;
 
 import java.io.Serializable;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 
 // implement the lossy counting algorithm for sloving heavy hitters problem
 public class LossyCounting implements Serializable {
+
     // here are the parameters for lossy counting data structure
     private double fraction;
     private double error;
@@ -39,14 +41,22 @@ public class LossyCounting implements Serializable {
     // need to update the heavy hitters when turn to a new window
     private void updateHeavyHitters() {
         // each counter should minus 1 and if the counter is equal to 0 than drop it
-        for(Map.Entry<Object, LCCounter> entry : heavyHitters.entrySet()){
-            Object item = entry.getKey();
-            LCCounter counter = entry.getValue();
-            counter.add(-1);
-            if(counter.lowerBound <= 0)
-                heavyHitters.remove(item); // drop
-            else heavyHitters.put(item, counter); // update
+        Iterator iterator = heavyHitters.entrySet().iterator();
+        while(iterator.hasNext()){
+            Map.Entry<Object, LCCounter> entry = (Map.Entry<Object, LCCounter>) iterator.next();
+            entry.getValue().add(-1);
+            if(entry.getValue().lowerBound <= 0)
+                iterator.remove();
         }
+
+//        for(Map.Entry<Object, LCCounter> entry : heavyHitters.entrySet()){
+//            Object item = entry.getKey();
+//            LCCounter counter = entry.getValue();
+//            counter.add(-1);
+//            if(counter.lowerBound <= 0)
+//                heavyHitters.remove(item); // drop
+//            else heavyHitters.put(item, counter); // update
+//        }
     }
 
     // merge two loosy counting
@@ -61,8 +71,8 @@ public class LossyCounting implements Serializable {
                 Object item = entry.getKey();
                 LCCounter counter2 = entry.getValue();
                 LCCounter counter1 = heavyHitters.get(item);
-                counter1.add(counter2.lowerBound);
-                heavyHitters.put(item, counter1);
+                if(counter1 == null) heavyHitters.put(item, counter2);
+                else counter1.add(counter2.lowerBound);
                 if(cardinality % (long) Math.ceil(1 / error) == 0)
                     updateHeavyHitters();
             }
@@ -96,5 +106,16 @@ public class LossyCounting implements Serializable {
         for(Map.Entry<Object, Long> entry : res.entrySet())
             str += entry.getKey() + "  frequency: " + entry.getValue() + "\n";
         return str;
+    }
+
+    @Override
+    protected LossyCounting clone() throws CloneNotSupportedException {
+        LossyCounting res = new LossyCounting(fraction, error);
+        res.cardinality = cardinality;
+        Map<Object, LCCounter> map = new HashMap<>();
+        for(Map.Entry<Object, LCCounter> entry : heavyHitters.entrySet())
+            map.put(entry.getKey(), entry.getValue());
+        res.heavyHitters = map;
+        return res;
     }
 }
