@@ -8,7 +8,6 @@ import java.util.Arrays;
 import java.util.Random;
 
 // the data structure for count-min sketch
-// implements the FrequencyInterface (which contains basic operators for computing frequency)
 public class CountMinSketch implements Serializable {
 
     // the big prime used in count-min hash functions

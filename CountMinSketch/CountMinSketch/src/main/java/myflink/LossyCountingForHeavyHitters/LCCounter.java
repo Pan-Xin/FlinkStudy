@@ -10,7 +10,7 @@ public class LCCounter implements Serializable {
     // the constructors
     LCCounter(){}
 
-    LCCounter(long lowerBound, long frequencyError){
+    LCCounter(long lowerBound){
         this.lowerBound = lowerBound;
     }
 

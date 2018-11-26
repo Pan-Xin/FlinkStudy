@@ -21,7 +21,7 @@ public class CMHHTest {
 
         // set up the streaming execution environment
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
-        env.setParallelism(1);
+       // env.setParallelism(1);
 
         String dataSetPath = "C:\\Users\\xin-p\\Desktop\\workspace\\FlinkStudy\\CountMinSketch\\CountMinSketch\\src\\main\\resources\\dataset1.txt";
         String outputPath = "C:\\Users\\xin-p\\Desktop\\dataset1Words.txt";

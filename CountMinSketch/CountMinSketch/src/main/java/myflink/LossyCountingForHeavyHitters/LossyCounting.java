@@ -31,7 +31,7 @@ public class LossyCounting implements Serializable {
             heavyHitters.get(item).add(1);
         // else new a new counter and add it into the heavy hitters
         else
-            heavyHitters.put(item, new LCCounter(1, 0));
+            heavyHitters.put(item, new LCCounter(1));
         // if current window is full then update the window and the heavy hitters
         if(cardinality % (long) Math.ceil(1 / error) == 0)
             // update heavy hitters
