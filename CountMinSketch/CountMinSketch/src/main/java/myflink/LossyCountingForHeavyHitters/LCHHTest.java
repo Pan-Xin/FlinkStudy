@@ -10,6 +10,8 @@ import org.apache.flink.streaming.api.datastream.DataStreamSource;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 import org.apache.flink.util.Collector;
 
+// here is the Test class for testing Lossy Counting heavy hitter
+// please set the mainClass as this one in the pom file
 public class LCHHTest {
     public static final String ACC_NAME = "lchh";
     public static LossyCounting lchhRes;
@@ -23,8 +25,10 @@ public class LCHHTest {
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
         env.setParallelism(3);
 
-        String dataSetPath = "C:\\Users\\xin-p\\Desktop\\workspace\\FlinkStudy\\CountMinSketch\\CountMinSketch\\src\\main\\resources\\dataset1.txt";
-        String outputPath = "C:\\Users\\xin-p\\Desktop\\dataset1Words.txt";
+        String dataSetPath = LCHHTest.class.getResource("/dataset1.txt").getPath();
+
+        //String dataSetPath = "C:\\Users\\xin-p\\Desktop\\workspace\\FlinkStudy\\CountMinSketch\\CountMinSketch\\src\\main\\resources\\dataset1.txt";
+        //String outputPath = "C:\\Users\\xin-p\\Desktop\\dataset1Words.txt";
 
         DataStreamSource<String> dataStreamSource = env.readTextFile(dataSetPath);
 
@@ -34,7 +38,7 @@ public class LCHHTest {
                 .flatMap(new LCHHProcess());
 
 
-        dataStream.writeAsText(outputPath, FileSystem.WriteMode.OVERWRITE);
+        //dataStream.writeAsText(outputPath, FileSystem.WriteMode.OVERWRITE);
 
         env.execute();
 

@@ -11,6 +11,7 @@ import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 import org.apache.flink.util.Collector;
 
 // here is the Test class for testing Count-Min Sketch heavy hitter
+// please set the mainClass as this one in the pom file
 public class CMHHTest {
 
     public static final String ACC_NAME = "cmhh";
@@ -23,8 +24,10 @@ public class CMHHTest {
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
        // env.setParallelism(1);
 
-        String dataSetPath = "C:\\Users\\xin-p\\Desktop\\workspace\\FlinkStudy\\CountMinSketch\\CountMinSketch\\src\\main\\resources\\dataset1.txt";
-        String outputPath = "C:\\Users\\xin-p\\Desktop\\dataset1Words.txt";
+        String dataSetPath = CMHHTest.class.getResource("/dataset1.txt").getPath();
+
+       // String dataSetPath = "C:\\Users\\xin-p\\Desktop\\workspace\\FlinkStudy\\CountMinSketch\\CountMinSketch\\src\\main\\resources\\dataset1.txt";
+       // String outputPath = "C:\\Users\\xin-p\\Desktop\\dataset1Words.txt";
 
         DataStreamSource<String> dataStreamSource = env.readTextFile(dataSetPath);
 
@@ -34,7 +37,7 @@ public class CMHHTest {
                 .flatMap(new CMHHProcess());
 
 
-        dataStream.writeAsText(outputPath, FileSystem.WriteMode.OVERWRITE);
+       // dataStream.writeAsText(outputPath, FileSystem.WriteMode.OVERWRITE);
 
         env.execute();
 
